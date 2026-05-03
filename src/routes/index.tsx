@@ -270,40 +270,17 @@ function Letter() {
 
 function Seal() {
   return (
-    <svg width="110" height="110" viewBox="0 0 200 200" aria-hidden>
-      <defs>
-        <radialGradient id="wax" cx="40%" cy="35%" r="70%">
-          <stop offset="0%" stopColor="oklch(0.78 0.1 60)" />
-          <stop offset="55%" stopColor="oklch(0.62 0.11 50)" />
-          <stop offset="100%" stopColor="oklch(0.42 0.09 40)" />
-        </radialGradient>
-      </defs>
-      <path
-        d="M100 12
-           C 130 10, 160 28, 172 52
-           C 188 70, 192 110, 172 138
-           C 162 164, 130 188, 100 186
-           C 66 192, 38 168, 26 142
-           C 8 118, 10 80, 28 56
-           C 42 28, 70 14, 100 12 Z"
-        fill="url(#wax)"
-      />
-      <circle cx="100" cy="100" r="62" fill="none" stroke="oklch(0.45 0.08 45 / 0.5)" strokeWidth="1.5" />
-      <g
-        stroke="oklch(0.4 0.08 42 / 0.7)"
-        strokeWidth="1.6"
-        fill="none"
-        strokeLinecap="round"
-      >
-        <path d="M100 140 L100 75" />
-        <path d="M100 95 C 90 88, 80 86, 72 90" />
-        <path d="M100 105 C 110 98, 120 96, 128 100" />
-        <path d="M100 115 C 92 110, 84 110, 78 114" />
-        <circle cx="68" cy="88" r="2.5" fill="oklch(0.4 0.08 42 / 0.6)" />
-        <circle cx="132" cy="98" r="2.5" fill="oklch(0.4 0.08 42 / 0.6)" />
-        <circle cx="74" cy="112" r="2.5" fill="oklch(0.4 0.08 42 / 0.6)" />
-        <circle cx="100" cy="72" r="3" fill="oklch(0.4 0.08 42 / 0.6)" />
-      </g>
-    </svg>
+    <img
+      src={sealImg}
+      alt="Selo de cera A&A"
+      width={130}
+      height={130}
+      draggable={false}
+      className="w-[130px] h-[130px] sm:w-[140px] sm:h-[140px] select-none transition-transform duration-300 hover:scale-110"
+      style={{
+        filter:
+          "drop-shadow(0 6px 10px oklch(0.3 0.05 40 / 0.45)) drop-shadow(0 2px 2px oklch(0.3 0.05 40 / 0.35))",
+      }}
+    />
   );
 }
