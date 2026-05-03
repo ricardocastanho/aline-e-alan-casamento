@@ -1,6 +1,7 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import sealImg from "@/assets/seal.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
