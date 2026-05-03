@@ -19,7 +19,7 @@ const fade = (delay = 0) => ({
 });
 
 const rsvpPhoneNumber = "+55 (55) 99967-8631";
-const rsvpMessage = "Olá! Gostaria de confirmar minha presença no casamento. 💍";
+const rsvpMessage = "Olá! Gostaria de confirmar minha presença no casamento da Aline e do Alan! 💍";
 const whatsappUrl = `https://wa.me/${rsvpPhoneNumber.replace(/\D/g, "")}?text=${encodeURIComponent(
   rsvpMessage,
 )}`;
