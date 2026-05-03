@@ -77,7 +77,7 @@ function Invite() {
               <p>Darci Pettenon</p>
               <p>Elair Pires Barbosa</p>
             </div>
-            <div className="text-left sm:text-center">
+            <div className="text-right sm:text-center">
               <p>Alex Martins Antunes</p>
               <p>Michele Braga de Oliveira</p>
             </div>
@@ -88,7 +88,7 @@ function Invite() {
             className="mt-10 sm:mt-14 text-6xl sm:text-8xl text-primary leading-none"
             style={{ fontFamily: "var(--font-script)" }}
           >
-            Aline <span className="italic font-light">e</span> Alan
+            Aline <span className="italic font-light">e </span> Alan
           </motion.h1>
 
           <motion.p {...fade(0.6)} className="mt-10 sm:mt-14 text-base sm:text-lg text-primary/90 max-w-md mx-auto">
@@ -121,7 +121,7 @@ function Invite() {
                 <p className="font-semibold">Confirme</p>
                 <p>sua presença até</p>
                 <p>20 de janeiro de 2027</p>
-                <p className="mt-2">No contato: (55) 99967-8631</p>
+                <p className="mt-2">No contato: (55) 99967-8631 - Lauren</p>
               </div>
             </div>
             <div className="flex gap-3">
@@ -132,7 +132,7 @@ function Invite() {
                 <p className="font-semibold">Localização</p>
                 <p>Sede campestre</p>
                 <p>do Clube Gaúcho</p>
-                <p>- Salão Querencia</p>
+                <p>- Salão Querência</p>
               </div>
             </div>
           </motion.div>
