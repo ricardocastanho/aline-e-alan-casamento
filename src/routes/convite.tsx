@@ -32,12 +32,7 @@ function Leaves({ className, flip = false }: { className?: string; flip?: boolea
       style={{ transform: flip ? "scale(-1,-1)" : undefined }}
       aria-hidden
     >
-      <g
-        fill="none"
-        stroke="oklch(0.72 0.13 80)"
-        strokeWidth="1.4"
-        strokeLinecap="round"
-      >
+      <g fill="none" stroke="oklch(0.72 0.13 80)" strokeWidth="1.4" strokeLinecap="round">
         <path d="M10 10 Q 80 40 120 110" />
         <path d="M30 12 Q 50 30 55 55" />
         <path d="M55 55 q 8 -10 22 -10 q -4 14 -22 10 Z" fill="oklch(0.72 0.13 80 / 0.5)" />
@@ -97,7 +92,10 @@ function Invite() {
             Aline <span className="italic font-light">e </span> Alan
           </motion.h1>
 
-          <motion.p {...fade(0.6)} className="mt-10 sm:mt-14 text-base sm:text-lg text-primary/90 max-w-md mx-auto">
+          <motion.p
+            {...fade(0.6)}
+            className="mt-10 sm:mt-14 text-base sm:text-lg text-primary/90 max-w-md mx-auto"
+          >
             convidam para o seu casamento, que irá se realizar na
             <br />
             Sede campestre do Clube Gaúcho, no dia
