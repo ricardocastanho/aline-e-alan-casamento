@@ -132,7 +132,7 @@ function Invite() {
                 <p className="font-semibold">Localização</p>
                 <p>Sede campestre</p>
                 <p>do Clube Gaúcho</p>
-                <p>- Salão Querência</p>
+                <p>- Salão Querencia</p>
               </div>
             </div>
           </motion.div>
