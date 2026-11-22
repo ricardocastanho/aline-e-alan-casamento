@@ -6,7 +6,7 @@ export const Route = createFileRoute("/convite")({
   head: () => ({
     meta: [
       { title: "Aline & Alan — Nosso Convite" },
-      { name: "description", content: "10 de Abril, 16:30 — Sede campestre do Clube Gaúcho." },
+      { name: "description", content: "10 de Abril, 17:30 — Sede campestre do Clube Gaúcho." },
     ],
   }),
   component: Invite,
@@ -106,7 +106,7 @@ function Invite() {
             className="mt-6 text-2xl sm:text-4xl font-semibold tracking-wider text-primary"
             style={{ fontFamily: "var(--font-serif)" }}
           >
-            10 DE ABRIL, 16:30 HORAS
+            10 DE ABRIL, 17:30 HORAS
           </motion.h2>
 
           <motion.p {...fade(0.9)} className="mt-6 italic text-primary/85 text-base sm:text-lg">
@@ -124,7 +124,7 @@ function Invite() {
               <div>
                 <p className="font-semibold">Confirme</p>
                 <p>sua presença até</p>
-                <p>20 de janeiro de 2027</p>
+                <p>10 de fevereiro de 2027</p>
                 <p className="mt-2">
                   No contato:{" "}
                   <a
