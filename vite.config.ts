@@ -11,6 +11,5 @@ const isVercel = process.env.VERCEL === "1";
 
 export default defineConfig({
   // Vercel needs Nitro's build output; Cloudflare remains the default target.
-  cloudflare: isVercel ? false : undefined,
   plugins: isVercel ? [nitro()] : [],
 });
