@@ -1,6 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { Check, MapPin } from "lucide-react";
+import { useMemo } from "react";
+import { z } from "zod";
+import { RsvpSection } from "@/components/RsvpSection";
+import { parseCompanions, sanitizeName } from "@/lib/rsvp";
+
+const inviteSearchSchema = z.object({
+  guest: z.string().optional().catch(undefined),
+  companions: z.string().optional().catch(undefined),
+});
 
 export const Route = createFileRoute("/convite")({
   head: () => ({
@@ -9,6 +18,7 @@ export const Route = createFileRoute("/convite")({
       { name: "description", content: "10 de Abril, 17:30 — Sede campestre do Clube Gaúcho." },
     ],
   }),
+  validateSearch: (search) => inviteSearchSchema.parse(search),
   component: Invite,
 });
 
@@ -46,6 +56,9 @@ function Leaves({ className, flip = false }: { className?: string; flip?: boolea
 }
 
 function Invite() {
+  const search = Route.useSearch();
+  const guestName = sanitizeName(search.guest ?? "");
+  const companions = useMemo(() => parseCompanions(search.companions), [search.companions]);
   return (
     <main
       className="min-h-screen flex items-center justify-center px-4 py-10"
@@ -153,9 +166,16 @@ function Invite() {
             </div>
           </motion.div>
 
+          {guestName && (
+            <motion.div {...fade(1.2)}>
+              <RsvpSection guestName={guestName} companions={companions} />
+            </motion.div>
+          )}
+
           <motion.div {...fade(1.25)} className="mt-12">
             <Link
               to="/"
+              search={search}
               className="text-xs uppercase tracking-[0.3em] text-primary/70 hover:text-primary transition-colors"
             >
               ← voltar

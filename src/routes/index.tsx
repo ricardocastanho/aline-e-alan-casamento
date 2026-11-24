@@ -2,6 +2,12 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import sealImg from "@/assets/seal.png";
+import { z } from "zod";
+
+const inviteSearchSchema = z.object({
+  guest: z.string().optional().catch(undefined),
+  companions: z.string().optional().catch(undefined),
+});
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -12,6 +18,7 @@ export const Route = createFileRoute("/")({
       { property: "og:description", content: "Clique para abrir nosso convite." },
     ],
   }),
+  validateSearch: (search) => inviteSearchSchema.parse(search),
   component: Letter,
 });
 
@@ -19,6 +26,7 @@ type Stage = "idle" | "press" | "seal" | "flap" | "letter" | "exit";
 
 function Letter() {
   const navigate = useNavigate();
+  const search = Route.useSearch();
   const [stage, setStage] = useState<Stage>("idle");
 
   const open = () => {
@@ -29,7 +37,7 @@ function Letter() {
     setTimeout(() => setStage("flap"), 900);
     setTimeout(() => setStage("letter"), 1700);
     setTimeout(() => setStage("exit"), 2900);
-    setTimeout(() => navigate({ to: "/convite" }), 3500);
+    setTimeout(() => navigate({ to: "/convite", search }), 3500);
   };
 
   const opening = stage !== "idle";
