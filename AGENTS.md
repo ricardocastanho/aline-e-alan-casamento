@@ -30,3 +30,5 @@ This is an interactive wedding invitation website (Aline & Alan) built with **Re
 - `vite.config.ts` uses `@lovable.dev/vite-tanstack-config` which bundles all necessary Vite plugins (TanStack Start, React, Tailwind, Cloudflare, etc.) — do not add duplicate plugins.
 - The `wrangler.jsonc` config is for Cloudflare Workers deployment only; local dev uses `npm run dev` without Wrangler.
 - Google Fonts are loaded from CDN at runtime; they may not render in environments without internet access.
+
+- RSVP data is written only through server functions calling SECURITY DEFINER RPCs (save_rsvp/get_rsvp) restricted to service_role; guests table has RLS with no client policies because guests are anonymous.
