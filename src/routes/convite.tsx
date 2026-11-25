@@ -132,7 +132,6 @@ function Invite() {
                 <p className="font-semibold">Confirme</p>
                 <p>sua presença até</p>
                 <p>10 de fevereiro de 2027</p>
-                <p className="mt-2">pelo botão abaixo</p>
               </div>
             </div>
             <div className="flex gap-3">

@@ -101,7 +101,7 @@ export function RsvpSection({ guestName, companions }: { guestName: string; comp
       </Button>
 
       <Dialog open={open} onOpenChange={(value) => !saving && setOpen(value)}>
-        <DialogContent className="max-w-[calc(100%-2rem)] sm:max-w-md bg-paper rounded-md">
+        <DialogContent className="max-w-[calc(100%-2rem)] sm:max-w-md max-h-[85vh] overflow-y-auto bg-paper rounded-md">
           {success ? (
             <div className="py-6 text-center">
               <Heart className="mx-auto h-10 w-10 text-primary" />
@@ -152,7 +152,8 @@ export function RsvpSection({ guestName, companions }: { guestName: string; comp
                 )}
                 <PersonRow
                   id="rsvp-guest"
-                  person={{ name: guestName || typedName || "Você", confirmed: guest.confirmed }}
+                  person={{ name: "Você", confirmed: guest.confirmed }}
+                  note={guestName || typedName.trim() || undefined}
                   label="Eu vou comparecer"
                   onChange={(confirmed) => setGuest({ ...guest, confirmed })}
                 />
@@ -196,18 +197,23 @@ function PersonRow({
   id,
   person,
   label,
+  note,
   onChange,
 }: {
   id: string;
   person: Person;
   label: string;
+  note?: string;
   onChange: (confirmed: boolean) => void;
 }) {
   return (
     <div className="flex items-center gap-3 rounded-md border border-primary/20 px-4 py-3">
       <Checkbox id={id} checked={person.confirmed} onCheckedChange={(value) => onChange(value === true)} />
       <Label htmlFor={id} className="flex flex-col items-start gap-0.5 cursor-pointer">
-        <span className="font-semibold text-foreground">{person.name}</span>
+        <span className="font-semibold text-foreground">
+          {person.name}
+          {note && <span className="ml-2 font-normal text-primary/85">{note}</span>}
+        </span>
         <span className="text-xs font-normal text-muted-foreground">{label}</span>
       </Label>
     </div>

@@ -1,6 +1,5 @@
 import { z } from "zod";
 
-export const maxCompanions = 10;
 export const maxNameLength = 100;
 
 export function sanitizeName(value: string) {
@@ -23,8 +22,7 @@ export function parseCompanions(value: string | undefined) {
       if (!name || seen.has(key)) return false;
       seen.add(key);
       return true;
-    })
-    .slice(0, maxCompanions);
+    });
 }
 
 const nameSchema = z.string().transform(sanitizeName).pipe(z.string().min(1).max(maxNameLength));
@@ -32,9 +30,7 @@ const nameSchema = z.string().transform(sanitizeName).pipe(z.string().min(1).max
 export const rsvpSchema = z.object({
   guestName: nameSchema,
   guestConfirmed: z.boolean(),
-  companions: z
-    .array(z.object({ name: nameSchema, confirmed: z.boolean() }))
-    .max(maxCompanions),
+  companions: z.array(z.object({ name: nameSchema, confirmed: z.boolean() })),
 });
 
 export type RsvpInput = z.infer<typeof rsvpSchema>;
