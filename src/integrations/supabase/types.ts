@@ -14,6 +14,104 @@ export type Database = {
   }
   public: {
     Tables: {
+      gift_selections: {
+        Row: {
+          created_at: string
+          gift_id: string
+          guest_id: string
+          id: string
+          payment_status: string
+          price_cents_at_selection: number
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          gift_id: string
+          guest_id: string
+          id?: string
+          payment_status?: string
+          price_cents_at_selection: number
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          gift_id?: string
+          guest_id?: string
+          id?: string
+          payment_status?: string
+          price_cents_at_selection?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "gift_selections_gift_id_fkey"
+            columns: ["gift_id"]
+            isOneToOne: false
+            referencedRelation: "gifts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "gift_selections_guest_id_fkey"
+            columns: ["guest_id"]
+            isOneToOne: false
+            referencedRelation: "guests"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      gifts: {
+        Row: {
+          active: boolean
+          description: string
+          id: string
+          image_url: string
+          name: string
+          price_cents: number
+          sort_order: number
+        }
+        Insert: {
+          active?: boolean
+          description: string
+          id?: string
+          image_url: string
+          name: string
+          price_cents: number
+          sort_order: number
+        }
+        Update: {
+          active?: boolean
+          description?: string
+          id?: string
+          image_url?: string
+          name?: string
+          price_cents?: number
+          sort_order?: number
+        }
+        Relationships: []
+      }
+      guest_gift_access: {
+        Row: {
+          guest_id: string
+          token_hash: string
+        }
+        Insert: {
+          guest_id: string
+          token_hash: string
+        }
+        Update: {
+          guest_id?: string
+          token_hash?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "guest_gift_access_guest_id_fkey"
+            columns: ["guest_id"]
+            isOneToOne: true
+            referencedRelation: "guests"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       guests: {
         Row: {
           confirmed: boolean
@@ -69,11 +167,24 @@ export type Database = {
         }[]
       }
       normalize_guest_name: { Args: { _name: string }; Returns: string }
+      replace_gift_selections: {
+        Args: { _gift_ids: string[]; _guest_id: string; _token_hash: string }
+        Returns: boolean
+      }
       save_rsvp: {
         Args: {
           _companions: Json
           _guest_confirmed: boolean
           _guest_name: string
+        }
+        Returns: string
+      }
+      save_rsvp_with_gift_access: {
+        Args: {
+          _companions: Json
+          _guest_confirmed: boolean
+          _guest_name: string
+          _token_hash: string
         }
         Returns: string
       }

@@ -1,0 +1,1 @@
+Gift choices use an HttpOnly browser capability checked against a hashed database token; guest IDs alone never authorize access.

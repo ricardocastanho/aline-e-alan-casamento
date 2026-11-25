@@ -1,0 +1,4 @@
+- [ ] Add private gift access, gift catalog, and transactional selection storage.
+- [ ] Seed ten gifts and create ten local placeholder illustrations.
+- [ ] Redirect RSVP to a personalized gift page with selection summary and final thank-you.
+- [ ] Verify saving, returning, skipping, privacy, and mobile layout.
