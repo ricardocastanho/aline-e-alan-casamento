@@ -3,6 +3,7 @@ import { useServerFn } from "@tanstack/react-start";
 import { CheckCircle2, Heart, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
   Dialog,
@@ -26,8 +27,10 @@ export function RsvpSection({ guestName, companions }: { guestName: string; comp
   const [saving, setSaving] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
+  const [typedName, setTypedName] = useState("");
 
   useEffect(() => {
+    if (!guestName) return;
     let active = true;
     load({ data: { guestName } })
       .then((result) => {
@@ -49,14 +52,21 @@ export function RsvpSection({ guestName, companions }: { guestName: string; comp
     };
   }, [guestName, companions, load]);
 
+  const effectiveName = guestName || typedName.trim();
+
   const submit = async () => {
+    if (!effectiveName) {
+      setError("Por favor, informe seu nome para confirmar.");
+      return;
+    }
     setSaving(true);
     setError("");
     try {
       const result = await save({
-        data: { guestName, guestConfirmed: guest.confirmed, companions: people },
+        data: { guestName: effectiveName, guestConfirmed: guest.confirmed, companions: people },
       });
       if (!result.ok) throw new Error("failed");
+      setGuest({ name: effectiveName, confirmed: guest.confirmed });
       setRegistered(true);
       setSuccess(true);
     } catch {
@@ -125,9 +135,24 @@ export function RsvpSection({ guestName, companions }: { guestName: string; comp
               </DialogHeader>
 
               <div className="mt-2 space-y-3">
+                {!guestName && (
+                  <div className="space-y-2 text-left">
+                    <Label htmlFor="rsvp-name" className="text-xs uppercase tracking-[0.25em] text-primary/70">
+                      Seu nome
+                    </Label>
+                    <Input
+                      id="rsvp-name"
+                      value={typedName}
+                      onChange={(event) => setTypedName(event.target.value)}
+                      placeholder="Digite seu nome completo"
+                      maxLength={100}
+                      className="bg-background"
+                    />
+                  </div>
+                )}
                 <PersonRow
                   id="rsvp-guest"
-                  person={guest}
+                  person={{ name: guestName || typedName || "Você", confirmed: guest.confirmed }}
                   label="Eu vou comparecer"
                   onChange={(confirmed) => setGuest({ ...guest, confirmed })}
                 />

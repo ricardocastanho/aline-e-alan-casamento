@@ -28,12 +28,6 @@ const fade = (delay = 0) => ({
   transition: { duration: 0.9, delay, ease: "easeOut" as const },
 });
 
-const rsvpPhoneNumber = "+55 (55) 99967-8631";
-const rsvpMessage = "Olá! Gostaria de confirmar minha presença no casamento da Aline e do Alan! 💍";
-const whatsappUrl = `https://wa.me/${rsvpPhoneNumber.replace(/\D/g, "")}?text=${encodeURIComponent(
-  rsvpMessage,
-)}`;
-
 function Leaves({ className, flip = false }: { className?: string; flip?: boolean }) {
   return (
     <svg
@@ -138,19 +132,7 @@ function Invite() {
                 <p className="font-semibold">Confirme</p>
                 <p>sua presença até</p>
                 <p>10 de fevereiro de 2027</p>
-                <p className="mt-2">
-                  No contato:{" "}
-                  <a
-                    href={whatsappUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label={`Confirmar presença pelo WhatsApp no número ${rsvpPhoneNumber}`}
-                    className="font-medium text-primary underline decoration-primary/40 underline-offset-4 transition-colors hover:text-primary/80 hover:decoration-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2"
-                  >
-                    {rsvpPhoneNumber}
-                  </a>{" "}
-                  - Lauren
-                </p>
+                <p className="mt-2">pelo botão abaixo</p>
               </div>
             </div>
             <div className="flex gap-3">
@@ -166,11 +148,9 @@ function Invite() {
             </div>
           </motion.div>
 
-          {guestName && (
-            <motion.div {...fade(1.2)}>
-              <RsvpSection guestName={guestName} companions={companions} />
-            </motion.div>
-          )}
+          <motion.div {...fade(1.2)}>
+            <RsvpSection guestName={guestName} companions={companions} />
+          </motion.div>
 
           <motion.div {...fade(1.25)} className="mt-12">
             <Link
