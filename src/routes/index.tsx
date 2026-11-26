@@ -16,6 +16,8 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "Convidamos você para celebrar nosso casamento — 10 de Abril." },
       { property: "og:title", content: "Aline & Alan — Convite de Casamento" },
       { property: "og:description", content: "Clique para abrir nosso convite." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
   validateSearch: (search) => inviteSearchSchema.parse(search),

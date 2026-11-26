@@ -16,6 +16,10 @@ export const Route = createFileRoute("/convite")({
     meta: [
       { title: "Aline & Alan — Nosso Convite" },
       { name: "description", content: "10 de Abril, 17:30 — Sede campestre do Clube Gaúcho." },
+      { property: "og:title", content: "Aline & Alan — Nosso Convite" },
+      { property: "og:description", content: "10 de Abril, 17:30 — Sede campestre do Clube Gaúcho." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
   validateSearch: (search) => inviteSearchSchema.parse(search),

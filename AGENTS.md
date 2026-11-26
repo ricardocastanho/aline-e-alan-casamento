@@ -32,3 +32,6 @@ This is an interactive wedding invitation website (Aline & Alan) built with **Re
 - Google Fonts are loaded from CDN at runtime; they may not render in environments without internet access.
 
 - RSVP data is written only through server functions calling SECURITY DEFINER RPCs (save_rsvp/get_rsvp) restricted to service_role; guests table has RLS with no client policies because guests are anonymous.
+- Anonymous RSVP and gift access use an HttpOnly browser capability checked against a database hash; a guest ID or name alone must never authorize private reads or gift changes.
+- Gift selection replacements run in one service-role RPC transaction and preserve paid rows and pending price snapshots so future payment processing can trust them.
+- Gift seed data lives in a client-safe catalog and an idempotent SQL-generating script; local illustrations live in public/gifts to keep the catalog independent of external media.

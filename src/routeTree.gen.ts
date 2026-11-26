@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ConviteRouteImport } from './routes/convite'
+import { Route as SuccessRouteImport } from './routes/success'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,31 +23,40 @@ const ConviteRoute = ConviteRouteImport.update({
   path: '/convite',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SuccessRoute = SuccessRouteImport.update({
+  id: '/success',
+  path: '/success',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/convite': typeof ConviteRoute
+  '/success': typeof SuccessRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/convite': typeof ConviteRoute
+  '/success': typeof SuccessRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/convite': typeof ConviteRoute
+  '/success': typeof SuccessRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/convite'
+  fullPaths: '/' | '/convite' | '/success'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/convite'
-  id: '__root__' | '/' | '/convite'
+  to: '/' | '/convite' | '/success'
+  id: '__root__' | '/' | '/convite' | '/success'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ConviteRoute: typeof ConviteRoute
+  SuccessRoute: typeof SuccessRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +75,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ConviteRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/success': {
+      id: '/success'
+      path: '/success'
+      fullPath: '/success'
+      preLoaderRoute: typeof SuccessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ConviteRoute: ConviteRoute,
+  SuccessRoute: SuccessRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

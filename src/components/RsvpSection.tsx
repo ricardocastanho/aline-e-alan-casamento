@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
+import { useNavigate } from "@tanstack/react-router";
 import { CheckCircle2, Heart, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -18,6 +19,7 @@ import { getRsvp, saveRsvp } from "@/lib/rsvp.functions";
 type Person = { name: string; confirmed: boolean };
 
 export function RsvpSection({ guestName, companions }: { guestName: string; companions: string[] }) {
+  const navigate = useNavigate();
   const save = useServerFn(saveRsvp);
   const load = useServerFn(getRsvp);
   const [open, setOpen] = useState(false);
@@ -65,10 +67,14 @@ export function RsvpSection({ guestName, companions }: { guestName: string; comp
       const result = await save({
         data: { guestName: effectiveName, guestConfirmed: guest.confirmed, companions: people },
       });
-      if (!result.ok) throw new Error("failed");
+      if (!result.ok) {
+        setError(result.reason === "access" ? "Já existe uma resposta com este nome. Para editar com segurança, abra o convite no mesmo navegador em que você respondeu." : "Não foi possível salvar sua resposta. Tente novamente em instantes.");
+        return;
+      }
       setGuest({ name: effectiveName, confirmed: guest.confirmed });
       setRegistered(true);
-      setSuccess(true);
+      setOpen(false);
+      await navigate({ to: "/success", search: { guestId: result.guestId } });
     } catch {
       setError("Não foi possível salvar sua resposta. Tente novamente em instantes.");
     } finally {

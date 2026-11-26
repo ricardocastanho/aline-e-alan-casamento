@@ -39,8 +39,6 @@ export const Route = createRootRoute({
       { name: "twitter:site", content: "@Lovable" },
       { name: "twitter:title", content: "Aline e Alan - Convite de Casamento" },
       { name: "twitter:description", content: "Create an elegant, interactive wedding invitation website with a unique letter-opening experience." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/62fbdec5-96dc-45a0-891e-2f642da3185f/id-preview-ccbe39da--83ea8a11-ea58-4dea-af08-5c02532b78ac.lovable.app-1777820339644.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/62fbdec5-96dc-45a0-891e-2f642da3185f/id-preview-ccbe39da--83ea8a11-ea58-4dea-af08-5c02532b78ac.lovable.app-1777820339644.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -59,7 +57,7 @@ export const Route = createRootRoute({
 
 function RootShell({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="pt-BR">
       <head>
         <HeadContent />
       </head>
